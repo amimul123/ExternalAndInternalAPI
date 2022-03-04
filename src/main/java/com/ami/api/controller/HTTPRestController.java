@@ -38,16 +38,17 @@ public class HTTPRestController {
 		return tokenSevice.getTokenByEmail(email);
 	}
 	
-	@PostMapping(path = "/AddToken",consumes = "application/json")
-	public String AddTokenRequest(@RequestBody String param) {
+	@PostMapping(path = "/AddToken",consumes = "application/json", produces = "application/json")
+	public JSONObject AddTokenRequest(@RequestBody String param) {
+		JSONObject jsonData = null;
 		try {
-			JSONObject jsonData = (JSONObject) new JSONParser().parse(param);
+			jsonData = (JSONObject) new JSONParser().parse(param);
 			tokenSevice.addTokenToDB((JSONObject) jsonData.get("param"));
 			// System.out.println("Controller: " + jsonData.get("param").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return param;
+		return jsonData;
 	}
 
 }
