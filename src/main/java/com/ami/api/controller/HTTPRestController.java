@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ami.api.model.Address;
 import com.ami.api.model.Token;
+import com.ami.api.model.User;
+import com.ami.api.service.AddressServiceImpl;
 import com.ami.api.service.TokenService;
+import com.ami.api.service.UserService;
+import com.ami.api.service.UserServiceImpl;
 
 //@CrossOrigin(origins = "*")
 @RestController
@@ -25,6 +30,10 @@ public class HTTPRestController {
 
 	@Autowired
 	TokenService tokenSevice;
+	@Autowired
+	UserServiceImpl userService;
+	@Autowired
+	AddressServiceImpl addressService;
 
 	@GetMapping(path = "/Test/{id}", produces = "application/json")
 	public JSONObject GetId(@PathVariable(name = "id") String id) {
@@ -51,6 +60,29 @@ public class HTTPRestController {
 			e.printStackTrace();
 		}
 		return jsonData;
+	}
+	
+	@PostMapping(path = "/AddTestUser", produces = "application/json")
+	private User AddTestUser(@RequestBody String user) {
+		User responseUser = userService.addTestUser();
+		return responseUser;
+	}
+
+	@PostMapping(path = "/AddUser", consumes = "application/json", produces = "application/json")
+	private User AddUser(@RequestBody User user) {
+		User responseUser = userService.addUser(user);
+		return responseUser;
+	}
+	
+
+	@GetMapping(path = "/GetUser/{email}", produces = "application/json")
+	public User GetUserByEmail(@PathVariable(name = "email") String email) {
+		return userService.findUserByEmail(email);
+	}
+	
+	@GetMapping(path = "/GetAddressByCity/{city}", produces = "application/json")
+	public Address GetAddressByCity(@PathVariable(name = "city") String city) {
+		return addressService.GetAddressByCity(city);
 	}
 
 }
