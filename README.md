@@ -2,6 +2,12 @@
 1. GET, POST REST API
 2. Programmatically call to external API from Controller
 
+# External API Call
+1. Send a GET or POST request to the controller, named http://localhost:8081/ExternalToken
+2. Controller internally calls an externerl API, named http://localhost:8081/api/AddToken
+3. Internally send a  HTTP POST request with requied headers and params (JSON)
+4. Fetch the response of POST request (external api) and controller sends back that response to the user
+
 # Rest API
 1. api/AddUser (POST) <br/>
 Send a json object as follows:
