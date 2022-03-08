@@ -4,7 +4,8 @@
 
 # Rest API
 1. api/AddUser (post) <br/>
-send a json object as follows:
+send a json object as follows: <br/>
+```json
 {
     "fName": "new",
     "lName": "hos",
@@ -22,5 +23,5 @@ send a json object as follows:
         }
     ]
 }
-
+´´´
 2. 
