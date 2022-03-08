@@ -3,7 +3,7 @@
 2. Programmatically call to external API from Controller
 
 # Rest API
-1. api/AddUser (post)
+1. api/AddUser (post) <br/>
 send a json object as follows:
 {
     "fName": "new",
